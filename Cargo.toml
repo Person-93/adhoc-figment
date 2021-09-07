@@ -5,6 +5,7 @@ version = "0.0.0"
 edition = "2018"
 repository = "https://github.com/Person-93/adhoc-figment"
 description = "An ad hoc provider for figment"
+readme = "README.md"
 license = "MIT"
 keywords = ["config", "configuration"]
 categories = ["config"]

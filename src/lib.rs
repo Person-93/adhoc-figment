@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 use figment::{
     self,
     value::{Dict, Map, Tag, Value},
