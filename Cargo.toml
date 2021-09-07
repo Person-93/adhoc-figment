@@ -3,7 +3,11 @@ name = "adhoc-figment"
 authors = ["Person93 <person93.peron93@gmail.com"]
 version = "0.0.0"
 edition = "2018"
+repository = "https://github.com/Person-93/adhoc-figment"
+description = "An ad hoc provider for figment"
 license = "MIT"
+keywords = ["config", "configuration"]
+categories = ["config"]
 
 [dependencies]
 figment = "0.10.6"
