@@ -20,6 +20,7 @@ jobs:
           components: rustfmt, clippy
 
       - name: clippy
+        if: matrix.os == 'ubuntu-latest' && matrix.rust == 'stable'
         uses: actions-rs/cargo@v1
         with:
           command: clippy
