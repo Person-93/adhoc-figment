@@ -12,3 +12,6 @@ categories = ["config"]
 
 [dependencies]
 figment = "0.10.6"
+
+[dev-dependencies]
+figment = { version = "0.10", features = ["toml"] }

@@ -37,24 +37,38 @@ impl Provider for AdHocProvider {
 
     fn data(&self) -> std::result::Result<Map<Profile, Dict>, figment::Error> {
         let mut map = Map::new();
-        map.insert("default".into(), self.dict.clone());
+        map.insert("global".into(), self.dict.clone());
         Ok(map)
-    }
-
-    fn profile(&self) -> Option<Profile> {
-        Some("default".into())
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use figment::providers::{Format, Toml};
     use figment::Figment;
 
     #[test]
     fn it_works() {
         let provider = AdHocProvider::new("some.path", "value");
         let figment = Figment::from(provider);
+        assert_eq!(
+            figment.extract_inner::<String>("some.path").unwrap(),
+            "value"
+        );
+    }
+
+    #[test]
+    fn it_works_on_any_profile() {
+        let ad_hoc = AdHocProvider::new("some.path", "value");
+        let toml = Toml::string(
+            r#"
+            [profile.some]
+            path = "replaced"
+        "#,
+        )
+        .nested();
+        let figment = Figment::from(ad_hoc).merge(toml).select("profile");
         assert_eq!(
             figment.extract_inner::<String>("some.path").unwrap(),
             "value"
