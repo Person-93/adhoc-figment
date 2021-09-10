@@ -30,8 +30,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: "/usr/share/rust/.cargo"
-          key: ${{ runner.os }}-cargo-bins-${{ git.sha }}
-          restore-key: ${{ runner.os }}-cargo-bins-
+          key: ${{ runner.os }}-cargo-bins-${{ env.GITHUB_SHA }}
+          restore-keys: ${{ runner.os }}-cargo-bins-
 
       - name: install tools
         if: steps.cache.outputs.cache_hit != 'true'
